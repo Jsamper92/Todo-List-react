@@ -24,7 +24,7 @@ function App() {
     }
   ]);
 
-  const [elementUpdate, setEdit] = useState('');
+  const [elementUpdate, setEdit] = useState("");
 
   const addItem = content => {
     const newItems = [...items, { content: content }];
@@ -34,39 +34,39 @@ function App() {
   const addCompleted = content => {
     const id = content.id;
     const addCompleted = [...items];
-   
-      addCompleted[id].isCompleted = !addCompleted[id].isCompleted;
-      setItems(addCompleted);
+
+    addCompleted[id].isCompleted = !addCompleted[id].isCompleted;
+    setItems(addCompleted);
   };
 
   const removeElement = content => {
-    const itemRemove = [...items,items.splice(content.id, 1)];
+    const itemRemove = [...items, items.splice(content.id, 1)];
     setItems(itemRemove);
   };
 
   const editElement = content => {
     elementUpdate = items[content];
-    setEdit(elementUpdate)
-
-  }
+    setEdit(elementUpdate);
+  };
   return (
     <div className="App">
       <h1>Todo List</h1>
-      <ItemForm addItem={addItem} elementUpdate={elementUpdate}/>
+      <ItemForm addItem={addItem} elementUpdate={elementUpdate} />
       <ul className="ItemList">
-        {
-          
-        items.map((item, index) => (
-          <Item
-            key={index}
-            index={index}
-            addCompleted={addCompleted}
-            removeElement={removeElement}
-            editElement={editElement}
-            content={item}
-          />
-        ))
-        }
+        {items.length === 0 ? (
+          <span> No hay elementos en la lista</span>
+        ) : (
+          items.map((item, index) => (
+            <Item
+              key={index}
+              index={index}
+              addCompleted={addCompleted}
+              removeElement={removeElement}
+              editElement={editElement}
+              content={item}
+            />
+          ))
+        )}
       </ul>
     </div>
   );

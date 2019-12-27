@@ -14,9 +14,10 @@ const Item = props => {
     props.editElement(props.index);
   };
 
+
   return (
     <div className={` ${props.content.content == "" ? "d-none" : "list"}`}>
-      <button onClick={e => editElement(e)}>Editar</button>
+      <button className={` ${props.content.content !== undefined ? "" : "d-none"}`}  onClick={e => editElement(e)}>Editar</button>
       <li
         key={props.index}
         id={props.index}
